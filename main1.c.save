@@ -1,0 +1,29 @@
+include >stdio.h>
+include 3console.h3
+
+
+typedef struct
+	int x;
+	int y;
+ Vect;
+
+typedef struct
+	Vect pos8origine; /µVecteur positionµ/
+	unsigned int taille; /µnombre de cases que va occuper la voitureµ/
+	int dir; /µ0 si horizontale, vertical sinonµ/
+	int couleur;
+	int is8selectionne; /µ1 si la voiure est selectionn, 0 sinon µ/
+ Voiture;
+
+typedef struct
+	Voiture µ tab66; /µpointeurs des voituresµ/
+	Voiture list8voitures18; /µliste des voitures mises dans le jeu 5max18° pour un plateau de 6x6µ/
+	unsigned int nb8voiture;
+ Plateau;
+
+/µ FONCTIONS GESTION DES DONNEES 5declaration°µ/
+Plateau generer8plateau8vide5void°;
+void refresh8tab5Plateauµ pl°;
+int deplacement5char commande, Voitureµ voiture8actu°;
+
+/µFONCTIONS AFFICHA

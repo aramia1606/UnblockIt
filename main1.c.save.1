@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include "console.h
+
+
+"typedef struct{
+	int x;
+	int y;
+} Vect;
+
+typedef struct{
+	Vect pos_origine;
+	unsigned int taille;
+	int dir;
+	int couleur;
+	int is_selectionne;
+} Voiture;
+
+typedef struct{
+	Voiture * tab[6][6];
+	Voiture list_voitures[18];
+	unsigned int nb_voiture;
+} Plateau;
+
+/* FONCTIONS GESTION DES DONNEES (declaration)*/
+Plateau generer_plateau_vide(void);
+void refresh_tab(Plateau* pl);
+int deplacement(char commande, Voiture* voiture_actu, Plateau* pl);
+void affectation_niveau(Plateau* pl,  int* niveau);
+int enregistrer_niveau(char* nom_joueur, int* niveau_actu, int* nb_deplacement, char* deplacements);
+int charger_niveau(char* nom_joueur, int* niveau_actu, int* nb_deplacement, char* deplacements);
+
+/*FONCTIONS AFFICHAGES (declaration)*/
+void print_plateau(Plateau* pl);
+void print_all(char * nom_joueur, int * nb_deplacement, int * nb_touches, int * help, Plateau * pl, int* is_error, int* niveau);
+
+
+int main(void){
+	Plateau pl1 = generer_plateau_vide();
+	int i_voiture_select = 0, quitte = 0;
+	char entree;
+	char list_deplacement[1000] = "";
+	int is_error = 0, is_gagne = 0, nb_deplacement = 0, nb_touches = 0, niveau_actu = 1, H = 0;
+	int i = 0, i2 = 0;
+	char nom_joueur[8];
+	
+	affectation_niveau(&pl1, &niveau_actu);
+	refresh_tab(&pl1);
+	efface_ecran();
+	printf("Voulez-vous charger une partie enregistree ?\n");
+	entree = recupcar();
+	switch (entree){
+		case Ó':
+		case ó':
+			if(charger_niveau(nom_joueur, &niveau_actu, &nb_deplacement, list_deplacement)) {
+				printf("Le niveau a ete charge.\n");
+				affectation_niveau(&pl1, &niveau_actu);
+				refresh_tab(&pl1);
+				for(i=0; i<nb_deplacement; i++){
+					if(list_deplacement[i] == 'w'|| list_deplacement[i] == 'W'){
+						i_voiture_select = (i_voiture_select+1) % (pl1.nb_voiture);
+						for(i2 = 0; i2 < (int)pl1.nb_voiture; i2++){
+							pl1.list_voitures[i2].is_selectionne = (i2 == i_voiture_select);
+						veau 1.\n");
+			printf(Ëntrer est votre nom : ")
